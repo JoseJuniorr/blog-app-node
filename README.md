@@ -17,3 +17,9 @@ Instalação body-parser
 Instalação do Mongoose
 
 ### npm install --save mongoose
+
+Instalação do express-session
+
+### npm install --save express-session
+
+### npm install --save connect-flash

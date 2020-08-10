@@ -1,16 +1,37 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.send("rota raiz do ADM");
-});
+const mongoose = require("mongoose");
+require("../src/models/Categoria");
+const Categoria = mongoose.model("categorias");
 
-router.get("/posts", (req, res) => {
-  res.send("pagina de posts");
+router.get("/", (req, res) => {
+  res.render("admin/admin");
 });
 
 router.get("/categorias", (req, res) => {
-  res.send("pagina de categorias");
+  res.render("admin/categorias");
+});
+
+router.get("/categorias/add", (req, res) => {
+  res.render("admin/add-categorias");
+});
+
+//Cadastrar Categoria
+router.post("/categorias/nova", (req, res) => {
+  const novaCategoria = {
+    nome: req.body.nome,
+    slug: req.body.slug,
+  };
+
+  new Categoria(novaCategoria)
+    .save()
+    .then(() => {
+      console.log("Categoria salva com sucesso!");
+    })
+    .catch((err) => {
+      console.log("Erro ao salvar a categoria! " + err);
+    });
 });
 
 module.exports = router;
