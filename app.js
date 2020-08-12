@@ -1,6 +1,10 @@
 //Carregando Módulos
 const express = require("express");
 const handlebars = require("express-handlebars");
+const Handlebars = require("handlebars");
+const {
+  allowInsecurePrototypeAccess,
+} = require("@handlebars/allow-prototype-access");
 const bodyParser = require("body-parser");
 const path = require("path");
 const session = require("express-session");
@@ -39,7 +43,13 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.engine("handlebars", handlebars({ defaultLayout: "main" }));
+app.engine(
+  "handlebars",
+  handlebars({
+    defaultLayout: "main",
+    handlebars: allowInsecurePrototypeAccess(Handlebars),
+  })
+);
 app.set("view engine", "handlebars");
 
 //carregar pasta de arquivos estáticos
