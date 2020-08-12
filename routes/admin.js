@@ -24,4 +24,6 @@ router.get("/categorias/edit/:id", CategoriaController.show);
 //atualizar a categoria
 router.post("/categorias/edit", CategoriaController.update);
 
+// router.post("/categorias/deletar/:id", CategoriaController.delete);
+
 module.exports = router;

@@ -4,7 +4,7 @@
 
     <a href="/admin/categorias/add" class="btn btn-success">Nova Categoria</a>
 
-
+    {{!-- Listar categorias em cards --}}
     {{#each categorias}}
     <div class="card mt-4">
         <div class="card-body">
@@ -12,10 +12,44 @@
             <small>{{slug}}</small><br>
             <small>Atualizado em: {{updatedAt}}</small><br>
             <a href="/admin/categorias/edit/{{_id}}" class="btn btn-outline-primary mt-4">Editar</a>
+
+
+            <form action="/admin/categorias/deletar/{{_id}}" method="POST">
+                <input type="hidden" name="id" value="{{_id}}">
+                <button type="submit" class="btn btn-outline-danger mt-2" data-toggle="modal"
+                    data-target="#delete-cat">Excluir</button>
+            </form>
         </div>
     </div>
 
+    {{!-- //Janela modal
+    <div class="modal fade" id="delete-cat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Deletar categoria</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Tem certeza que deseja deletar esta categoria?
+                </div>
+                <div class="modal-footer">
+                    <form action="/admin/categorias/delete/{{_id}}" method="POST">
+                        <input type="hidden" name="id" value="{{_id}}">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-danger">Deletar</button></a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> --}}
+
+
     {{else}}
+    <h4 class="mt-3">Nenhuma Categoria encontrada!</h4>
 
     {{/each}}
 

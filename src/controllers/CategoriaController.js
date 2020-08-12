@@ -93,6 +93,17 @@ class CategoriaController {
         res.redirect("/admin/categorias");
       });
   }
+
+  // async delete(req, res) {
+  //   Categoria.findOneAndDelete({ _id: req.body.id })
+  //     .then(() => {
+  //       req.flash("success_msg", "Categoria deletada com sucesso!");
+  //     })
+  //     .catch((err) => {
+  //       req.flash("error_msg", "Erro ao remover a categoria!");
+  //       res.redirect("/admin/categorias");
+  //     });
+  // }
 }
 
 module.exports = new CategoriaController();
