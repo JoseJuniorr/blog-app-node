@@ -16,11 +16,11 @@ router.get("/categorias/add", (req, res) => {
 //CRUD de categorias
 //Cadastrar Categoria
 router.post("/categorias/nova", CategoriaController.store);
-//Listar Categorias
-router.get("/categorias", CategoriaController.show);
+//Listar todas Categorias
+router.get("/categorias", CategoriaController.index);
 //Editar Categoria
 //Listar conteúdo no form de edição
-router.get("/categorias/edit/:id", CategoriaController.index);
+router.get("/categorias/edit/:id", CategoriaController.show);
 //atualizar a categoria
 router.post("/categorias/edit", CategoriaController.update);
 

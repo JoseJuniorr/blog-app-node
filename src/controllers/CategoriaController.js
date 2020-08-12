@@ -4,15 +4,15 @@ require("../models/Categoria");
 const Categoria = mongoose.model("categorias");
 
 class CategoriaController {
+  //Listar conteúdo da categoria no formulário de edição
   async show(req, res) {
-    Categoria.find()
-      .sort({ updatedAt: "desc" })
-      .then((categorias) => {
-        res.render("admin/categorias", { categorias: categorias });
+    Categoria.findOne({ _id: req.params.id })
+      .then((categoria) => {
+        res.render("admin/edit-categorias", { categoria: categoria });
       })
       .catch((err) => {
-        req.flash("error_msg", "Erro ao listar as categorias!");
-        res.redirect("/admin");
+        req.flash("error_msg", "Esta categoria não existe!");
+        res.redirect("/admin/categorias");
       });
   }
 
@@ -59,15 +59,15 @@ class CategoriaController {
     }
   }
 
-  //Listar conteúdo da categoria no formulário de edição
   async index(req, res) {
-    Categoria.findOne({ _id: req.params.id })
-      .then((categoria) => {
-        res.render("admin/edit-categorias", { categoria: categoria });
+    Categoria.find()
+      .sort({ updatedAt: "desc" })
+      .then((categorias) => {
+        res.render("admin/categorias", { categorias: categorias });
       })
       .catch((err) => {
-        req.flash("error_msg", "Esta categoria não existe!");
-        res.redirect("/admin/categorias");
+        req.flash("error_msg", "Erro ao listar as categorias!");
+        res.redirect("/admin");
       });
   }
 
